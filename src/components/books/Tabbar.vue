@@ -4,7 +4,7 @@
       <i class="iconfont icon-iconqingbao"></i>
       <span>全部小册</span>
     </router-link>
-     <router-link  tag='li' to='/'>
+     <router-link  tag='li' to='/books/pay'>
       <i class="iconfont icon-yigou"></i>
       <span>已购</span>
     </router-link>
@@ -36,8 +36,7 @@
     text-align: center;
     font-size: 12px;
     i{
-      width: 25px;
-      height: 25px;
+      font-size: 25px;
     }
     span{
       font-size: 12px;
