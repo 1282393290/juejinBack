@@ -1,7 +1,8 @@
 <template>
   <div class="page-home">
     <headCommon />
-    <Navigation />
+    <Navigation :navList="navList"/>
+    <router-view />
   </div>
 </template>
 
@@ -9,25 +10,36 @@
 import axios from 'axios'
 import headCommon from '@/components/index/headCommon'
 import Navigation from '@/components/common/navigation'
+import IndexMain from '@/components/index/indexMain'
+
+import { mapActions } from 'vuex'
 export default {
+  data () {
+    return {
+      navList: [
+        {title:"推荐",url:'/'},
+        {title:"后端",url:'/backend/backend'},
+        {title:"前端",url:'/frontend/frontend'},
+        {title:"Android",url:'/android/android'},
+        {title:"iOS",url:'/ios/ios'},
+        {title:"人工智能",url:'/ai/ai'},
+        {title:"开发工具",url:'/freebie/freebie'},
+        {title:"代码人生",url:'/career/career'},
+        {title:"阅读",url:'/article/article'}
+      ]
+    }
+  },
+  methods: {
+    ...mapActions('index',['getAdsInfo','getArticleList','getTagNavList'])
+  },
   components: {
     headCommon,
     Navigation
   },
   created () {
-    axios.post('http://localhost:8080/query',{
-      extensions: {query: {id: "21207e9ddb1de777adeaca7a2fb38030"}},
-      operationName: "",
-      query: "",
-      variables: {first: 20, after: "", order: "POPULAR"}
-    },{
-      headers: {
-        'X-Agent': 'Juejin/Web'
-      }
-    })
-      .then(response => {
-        console.log(response)
-      })
+    this.getAdsInfo(),
+    this.getArticleList(),
+    this.getTagNavList()
   }
 }
 </script>

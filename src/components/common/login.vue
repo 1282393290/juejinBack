@@ -54,6 +54,7 @@ export default {
 <style lang="less">
 .component-login {
   position: fixed;
+  z-index: 10;
   left: 0;
   right: 0;
   top: 0;

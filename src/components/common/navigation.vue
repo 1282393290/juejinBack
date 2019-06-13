@@ -2,7 +2,7 @@
   <nav class="navigation">
     <ul class="nav-list">
         <li v-for="(item,index) in navList" :key="index">
-          <router-link to="/">{{item.title}}</router-link>
+          <router-link :to="item.url">{{item.title}}</router-link>
         </li>
     </ul>
   </nav>
@@ -12,19 +12,10 @@
 export default {
   data () {
     return {
-      navList: [
-        {title:"推荐"},
-        {title:"推荐"},
-        {title:"推荐"},
-        {title:"推荐"},
-        {title:"推荐"},
-        {title:"推荐"},
-        {title:"推荐"},
-        {title:"推荐"},
-        {title:"推荐"}
-      ]
+      
     }
-  }
+  },
+  props: ['navList']
 }
 </script>
 
@@ -42,6 +33,7 @@ export default {
     align-items: center;
     line-height: 1;
     height: 3.833rem;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,.05);
     li {
       padding-left: 2rem;
       height: 100%;
