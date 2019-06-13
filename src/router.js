@@ -1,5 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+// import Index from './views/Index/index.vue'
+// import Books from './views/Books/index.vue'
+// import Events from './views/Events/index.vue'
 
 Vue.use(Router)
 
@@ -13,7 +16,28 @@ export default new Router({
     {
       path: '/books',
       name: 'books',
-      component: () => import('./views/Books/index.vue')
+      component: () => import('./views/Books/index.vue'),
+      children:[
+        {
+          path: '',
+          name: 'book',
+          component: () => import('./views/Books/book.vue')
+        },
+        {
+          path: 'me',
+          name: 'me',
+          component: () => import('./views/Books/me.vue')
+        },
+        {
+          path: 'pay',
+          name: 'pay',
+          component: () => import('./views/Books/pay.vue')
+        },
+        {
+          path: '*',
+          redirect: '/books'
+        }
+      ]
     },
     {
       path: '/events',
