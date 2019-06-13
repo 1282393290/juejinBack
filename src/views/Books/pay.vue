@@ -1,29 +1,29 @@
 <template>
-<div class='book-emty'>
-  <img src="https://b-gold-cdn.xitu.io/v3/static/img/book-empty.d58b3e3.svg"/>
-  <p class="txt">暂时没有已购小册</p>
-  <button class="buy">购买</button>
-</div>
+  <div>
+      <component :is="loginState?'AfterPay':'BeforePay'"></component>
+      <Tabbar></Tabbar>
+      <Login></Login>
+      <Reg></Reg>
+  </div>
 </template>
 <script>
+import { mapState } from 'vuex'
+import Login from '@/components/common/login.vue'
+import Reg from '@/components/common/reg.vue'
+import Tabbar from '@/components/books/Tabbar.vue'
+import AfterPay from '@/components/books/afterPay.vue'
+import BeforePay from '@/components/books/beforePay.vue'
+
 export default {
- 
+  computed:{
+    ...mapState(['loginState'])
+  },
+  components: {
+   Tabbar,
+   AfterPay,
+   BeforePay,
+    Login,
+    Reg
+  }
 }
 </script>
-<style lang = 'less' scoped>
-    .book-emty{
-      width: 100%;
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      padding-bottom: 50px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      .txt{
-        
-      }
-    }
-</style>

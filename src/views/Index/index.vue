@@ -15,16 +15,7 @@ export default {
     Navigation
   },
   created () {
-    axios.post('http://localhost:8080/query',{
-      extensions: {query: {id: "21207e9ddb1de777adeaca7a2fb38030"}},
-      operationName: "",
-      query: "",
-      variables: {first: 20, after: "", order: "POPULAR"}
-    },{
-      headers: {
-        'X-Agent': 'Juejin/Web'
-      }
-    })
+    axios.get('http://localhost:8080/v1/getNavList')
       .then(response => {
         console.log(response)
       })

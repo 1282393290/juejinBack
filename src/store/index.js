@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import index from './Index/index'
+import books from './books'
 
 //import events from './events/index'
 
@@ -8,7 +9,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   modules: {
-    index
+    index,
+    books
   },
 
   state: {
@@ -27,7 +29,7 @@ export default new Vuex.Store({
     showLogReg (state,payload) {
       state.hasloginCount = payload[0]
       state.loginState = payload[1]
-      state.close = payload[2]
+      state.close = payload[2] || true
     }
   }
 })
