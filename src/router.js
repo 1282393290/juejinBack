@@ -75,7 +75,7 @@ export default new Router({
       component: () => import('./views/Books/index.vue'),
       children:[
         {
-          path: '',
+          path: 'book',
           name: 'book',
           component: () => import('./views/Books/book.vue')
         },
@@ -90,8 +90,8 @@ export default new Router({
           component: () => import('./views/Books/pay.vue')
         },
         {
-          path: '*',
-          redirect: '/books'
+          path: '/books',
+          redirect: '/books/book'
         }
       ]
     },

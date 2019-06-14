@@ -1,13 +1,13 @@
 <template>
 <div>
-
-   <nav class="navigation">
-    <ul class="nav-list">
+  <!-- <Navigation :navList="navlist"/> -->
+   <nav class="books-navigation">
+    <ul class="books-nav-list">
         <li v-for="(item,index) in navlist" :key="index">
           <router-link to="/">{{item.name}}</router-link>
         </li>
     </ul>
-  </nav>
+      </nav> 
     <BookText :list='booklist'></BookText>
     <Tabbar></Tabbar>
   </div>
@@ -16,6 +16,8 @@
 import { mapActions, mapState } from 'vuex'
 import BookText from '@/components/books/BookText.vue'
 import Tabbar from '@/components/books/Tabbar.vue'
+import Navigation from '@/components/common/navigation'
+import axios from 'axios'
 export default {
   data () {
     return {
@@ -24,7 +26,8 @@ export default {
   },     
  components: {
    BookText,
-   Tabbar
+   Tabbar,
+   Navigation
   },
   computed:{
     ...mapState('books', [
@@ -41,18 +44,19 @@ export default {
 }
 </script>
 <style lang="less" >
+@import '~@/styles/common/mixins.less';
       .router-link-active {
        
           top:0;
           left: 0;
          color: inherit;
       }
-      .navigation{
+      .books-navigation{
         position:fixed;
         top:0;
         z-index: 1;
         background: #fff;
-           .nav-list {
+           .books-nav-list {
               width: auto;
               overflow-x: auto;
               max-width: 960px;
@@ -63,6 +67,7 @@ export default {
               line-height: 1;
               height: 3.833rem;
               li {
+                .border-bottom;
                 padding-left: 2rem;
                 height: 100%;
                 align-items: center;

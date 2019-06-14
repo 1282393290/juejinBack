@@ -16,13 +16,13 @@ export default {
   },
   actions:{
     getnavList ({ commit }) {
-      http.get('http://localhost:8080/v1/getNavList')
+      http.get('/getNavList/v1/getNavList')
       .then(response => {
         commit('SETNAVLIST', response.data.d)
       })
     },
     getbookList ({ commit }) {
-      http.get('http://localhost:8080/v1/getListByLastTime',
+      http.get('/getBookList/v1/getListByLastTime',
       {
           params:{
             uid:'',

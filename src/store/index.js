@@ -1,14 +1,16 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import index from './Index/index'
-
-//import events from './events/index'
+import books from './books/index'
+import events from './events/index'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   modules: {
-    index
+    index,
+    books,
+    events
   },
 
   state: {

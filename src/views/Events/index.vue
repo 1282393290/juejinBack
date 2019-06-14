@@ -1,28 +1,11 @@
 <template>
   <div class="page-events">
-      <div class="main">
+      <div class="events-main">
          <van-swipe :autoplay="3000" indicator-color="white">
-              <van-swipe-item>1</van-swipe-item>
-              <van-swipe-item>2</van-swipe-item>
-              <van-swipe-item>3</van-swipe-item>
-              <van-swipe-item>4</van-swipe-item>
-          </van-swipe>
-        <!-- <div class="swiper"> -->
-          <!-- <van-swipe
-            :autoplay="3000" indicator-color="white">
-
-              <van-swipe-item
-                v-for="maring in maringList"
-                :key="maring._id"
-              >
-              <img :src="maring.screenshot" alt="">
+              <van-swipe-item v-for="(ban,index) in bannerList" :key="index">
+                <img :src="ban.screenshot" :alt="ban.title">
               </van-swipe-item>
-
-
-            <van-swipe-item >4</van-swipe-item> -->
-          <!-- </van-swipe> -->
-
-        <!-- </div> -->
+          </van-swipe>
         <div class="activity">
           <ul>
             <li>
@@ -65,33 +48,32 @@ import {mapActions, mapState} from 'vuex';
 export default {
   computed:{
     ...mapState('events',[
-      'maringList'
-
+      'bannerList'
     ])
 
   },
 
   methods: {
     ...mapActions('events',[
-      'getmaringList'
+      'getBannerList'
     ])
   },
   created(){
-    this.getmaringList();
+    this.getBannerList();
   }
 }
 </script>
 
 
-<style lang="less" scoped>
-.main{
+<style lang="less">
+.events-main{
   height:100%;
-  .swiper{
-    height:280px;
-    img{
-      width:100%;
-    }
-
+  .van-swipe__track {
+    display: flex;
+  }
+  img{
+      min-width: 320px;
+      height: 280px;
   }
   .activity{
     text-align: left;

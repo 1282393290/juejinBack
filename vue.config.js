@@ -21,6 +21,27 @@ module.exports = {
         pathRewrite: {
           '^/getCategoryList': ''
         }
+      },
+
+      '/getNavList': {
+        target: 'http://xiaoce-timeline-api-ms.juejin.im',
+        pathRewrite: {
+          '^/getNavList': ''
+        }
+      },
+
+      '/getBookList': {
+        target: 'http://xiaoce-timeline-api-ms.juejin.im',
+        pathRewrite: {
+          '^/getBookList': ''
+        }
+      },
+
+      '/getEventList': {
+        target: 'http://event-storage-api-ms.juejin.im',
+        pathRewrite: {
+          '^/getEventList': ''
+        }
       }
     }
   }
