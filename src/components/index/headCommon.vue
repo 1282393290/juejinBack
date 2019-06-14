@@ -27,7 +27,7 @@
             <HeadIslogin>
               <template v-slot:unlog>
                 <span class="login" @click="start(false,false,true)">登录</span>
-                <span class="reg" @click="start(true,true,true)">注册</span>
+                <span class="reg" @click="start(false,true,true)">注册</span>
                 <Login />
                 <Reg />
               </template>

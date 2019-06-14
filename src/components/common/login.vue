@@ -8,7 +8,7 @@
           <input type="text" placeholder="请输入手机号或用户名">
           <input type="password" placeholder="请输入密码">
         </div>
-        <router-link to="/login" class="login-btn" @click="closeFn" tag="button">登录</router-link>
+        <button class="login-btn" @click="isLogin(true)" tag="button">登录</button>
         <div class="prompt-box">
           没有账号？ 
           <span data-v-36a84bce="" class="clickable" @click="setlogin">注册</span>
@@ -39,12 +39,16 @@ export default {
     ...mapState(['loginState','hasloginCount','close'])
   },
   methods: {
-    ...mapMutations(['setHasLogin','setClose']),
+    ...mapMutations(['setHasLogin','setClose','setLoginState']),
     setlogin () {
       this.setHasLogin()
     },
     closeFn () {
       this.setClose()
+    },
+    isLogin () {
+      this.setLoginState(arguments[0])
+      this.closeFn()
     }
   }
 }

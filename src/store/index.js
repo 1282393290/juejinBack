@@ -24,9 +24,12 @@ export default new Vuex.Store({
     setClose (state,payload) {
       state.close = false
     },
+    setLoginState (state,payload) {
+      state.loginState = payload
+    },
     showLogReg (state,payload) {
-      state.hasloginCount = payload[0]
-      state.loginState = payload[1]
+      state.loginState = payload[0]
+      state.hasloginCount = payload[1]
       state.close = payload[2]
     }
   }

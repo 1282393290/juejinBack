@@ -9,7 +9,7 @@
           <input type="text" placeholder="请输入用户名">
           <input type="password" placeholder="请输入密码（不少于6位）">
         </div>
-        <router-link to="/reg" class="reg-btn" @click="closeFn" tag="button">注册</router-link>
+        <button class="reg-btn" @click="isReg" tag="button">注册</button>
         <div class="prompt-box">
           <span class="clickable" @click="setlogin">已有账号登录</span>
         </div>
@@ -28,6 +28,7 @@
 
 <script>
 import { mapState,mapMutations } from 'vuex';
+import { Toast } from 'vant'
 export default {
   data () {
     return {
@@ -44,6 +45,10 @@ export default {
     },
     closeFn () {
       this.setClose()
+    },
+    isReg () {
+      Toast('注册成功')
+      this.closeFn()
     }
   }
 }
