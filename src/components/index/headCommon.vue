@@ -27,13 +27,12 @@
             <HeadIslogin>
               <template v-slot:unlog>
                 <span class="login" @click="start(false,false,true)">登录</span>
-                <span class="reg" @click="start(false,true,true)">注册</span>
+                <span class="reg" @click="start(true,true,true)">注册</span>
                 <Login />
                 <Reg />
               </template>
               <template v-slot:islog>
-                <i class="iconfont icon-xiaoxi"></i>
-                <span class="user">祭天</span>
+                <span>祭天</span>
               </template>
             </HeadIslogin>
           </li>
@@ -119,14 +118,12 @@ export default {
           }
           .hide-down {
             position: absolute;
-            z-index: 10;
             left: 0;
             top: 5rem;
             width: 5.66rem;
             box-shadow: 0 1px 2px 0 rgba(0,0,0,.1);
             border: 1px solid rgba(177,180,185,.45);
             border-radius: 4px;
-            background: #fff;
             .link-item {
               padding: 0 1.5rem;
               height: 4rem;
