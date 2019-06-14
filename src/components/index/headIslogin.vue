@@ -1,6 +1,6 @@
 <template>
   <div class="headIslogin">
-    <slot :name="loginState ? 'islog' : 'unlog'"></slot>
+    <slot :name="loginState && !close ? 'islog' : 'unlog'"></slot>
   </div>
 </template>
 
@@ -13,7 +13,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['loginState'])
+    ...mapState(['loginState','close'])
   }
 }
 </script>

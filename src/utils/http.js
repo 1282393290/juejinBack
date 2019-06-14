@@ -1,14 +1,13 @@
-import axios from 'axios'
-import {Toast} from 'vant'
-const http = axios.create()
+import Axios from 'axios'
+import { Toast } from 'vant'
 
-http.defaults.baseURL = process.env.NODE_ENV === 'production' ? 'https://event-storage-api-ms.juejin.im/' : 'https://event-storage-api-ms.juejin.im/'
+const http = Axios.create()
+
+http.defaults.baseURL = process.env.NODE_ENV === 'production' ? 'http:localhost:8080/' : 'http://localhost:8080/'
 http.timeout =10000
 
 http.interceptors.response.use(response => {
-  console.log(response)
   let res = response.data
-
   if(res.s === 1) {
     return res.d
   } else {
