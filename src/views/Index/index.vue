@@ -1,8 +1,8 @@
 <template>
   <div class="page-home">
     <headCommon />
-    <Navigation :navList="navList"/>
-    <router-view />
+    <Navigation :navList="resetCategoryList"/>
+    <router-view class="main" />
   </div>
 </template>
 
@@ -10,27 +10,19 @@
 import axios from 'axios'
 import headCommon from '@/components/index/headCommon'
 import Navigation from '@/components/common/navigation'
-import IndexMain from '@/components/index/indexMain'
 
-import { mapActions } from 'vuex'
+import { mapActions,mapGetters } from 'vuex'
 export default {
   data () {
     return {
-      navList: [
-        {title:"推荐",url:'/'},
-        {title:"后端",url:'/backend/backend'},
-        {title:"前端",url:'/frontend/frontend'},
-        {title:"Android",url:'/android/android'},
-        {title:"iOS",url:'/ios/ios'},
-        {title:"人工智能",url:'/ai/ai'},
-        {title:"开发工具",url:'/freebie/freebie'},
-        {title:"代码人生",url:'/career/career'},
-        {title:"阅读",url:'/article/article'}
-      ]
+      
     }
   },
+  computed: {
+    ...mapGetters('index',['resetCategoryList'])
+  },
   methods: {
-    ...mapActions('index',['getAdsInfo','getArticleList','getTagNavList'])
+    ...mapActions('index',['getAdsInfo','getArticleList','getTagNavList','getCategoryList'])
   },
   components: {
     headCommon,
@@ -38,13 +30,44 @@ export default {
   },
   created () {
     this.getAdsInfo(),
-    this.getArticleList(),
-    this.getTagNavList()
+    this.getArticleList({
+      params: {
+        extensions: {query: {id: "21207e9ddb1de777adeaca7a2fb38030"}},
+        operationName: "",
+        query: "",
+        variables: {first: 20, after: "", order: "POPULAR"}
+      }
+    }),
+    this.getTagNavList({
+      params: {
+        extensions: {query: {id: "801e22bdc908798e1c828ba6b71a9fd9"}},
+        operationName: "",
+        query: "",
+        variables: {category: "5562b419e4b00c57d9b94ae2", limit: 15}
+      }
+    }),
+    this.getCategoryList()
   }
 }
 </script>
 
-<style lang='less' scoped>
+<style lang='less'>
 @import '~@/styles/base.less';
 @import '~@/styles/index/index.less';
+
+.page-home {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  .headCommon {
+    flex: 0 0 auto;
+  }
+  .navigation {
+    flex: 0 0 auto;
+  }
+  .main {
+    flex-grow: 1;
+    overflow: auto;
+  }
+}
 </style>

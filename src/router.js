@@ -99,6 +99,10 @@ export default new Router({
       path: '/events',
       name: 'events',
       component: () => import('./views/Events/index.vue')
+    },
+    {
+      path: '*',
+      redirect: '/'
     }
   ]
 })

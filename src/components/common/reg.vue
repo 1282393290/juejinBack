@@ -9,7 +9,7 @@
           <input type="text" placeholder="请输入用户名">
           <input type="password" placeholder="请输入密码（不少于6位）">
         </div>
-        <button class="reg-btn">注册</button>
+        <router-link to="/reg" class="reg-btn" @click="closeFn" tag="button">注册</router-link>
         <div class="prompt-box">
           <span class="clickable" @click="setlogin">已有账号登录</span>
         </div>

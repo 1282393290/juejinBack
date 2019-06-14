@@ -14,7 +14,7 @@ export default new Vuex.Store({
   state: {
     hasloginCount: false,
     loginState: false,
-    close: true
+    close: false
   },
 
   mutations: {

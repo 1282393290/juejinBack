@@ -2,7 +2,7 @@
   <nav class="navigation">
     <ul class="nav-list">
         <li v-for="(item,index) in navList" :key="index">
-          <router-link :to="item.url">{{item.title}}</router-link>
+          <router-link :to="item.title" class="baseColor">{{item.name}}</router-link>
         </li>
     </ul>
   </nav>
@@ -42,6 +42,9 @@ export default {
       flex-shrink: 0;
       font-size: 1.16rem;
       color: #71777c;
+      .baseColor {
+        color: #909090;
+      }
     }
 }
 </style>

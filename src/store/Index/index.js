@@ -5,6 +5,7 @@ const state = {
   adsInfo: [],
   tagNavList: [],
   articleList: [],
+  categoryList: []
 }
 
 const mutations = {
@@ -16,21 +17,26 @@ const mutations = {
   },
   setArticleList (state, payload) {
     state.articleList = payload
+  },
+  setCategoryList (state, payload) {
+    state.categoryList = payload
   }
 }
 
 const getters = {
-
+  resetCategoryList (state) {
+    state.categoryList = state.categoryList.map((val,key,arr)=>{
+      var title = '/'+val.title+'/'+val.title
+      return {name:val.name,title:title}
+    })
+    state.categoryList.unshift({name:'推荐',title:'/'})
+    return state.categoryList
+  }
 }
 
 const actions = {
-  getArticleList ({ commit }) {
-    axios.post('/query/query',{
-      extensions: {query: {id: "21207e9ddb1de777adeaca7a2fb38030"}},
-      operationName: "",
-      query: "",
-      variables: {first: 20, after: "", order: "POPULAR"}
-    },{
+  getArticleList ({ commit },payload) {
+    axios.post('/query/query',payload.params,{
       headers: {
         'X-Agent': 'Juejin/Web'
       }
@@ -39,10 +45,14 @@ const actions = {
         commit('setArticleList',response.data.data.articleFeed.items.edges)
       })
   },
-  getTagNavList ({ commit }) {
-    http.get('/getArticleList/v1/getListByLastTime?uid=&client_id=&token=&src=web&pageNum=1')
+  getTagNavList ({ commit },payload) {
+    axios.post('/query/query',payload.params,{
+      headers: {
+        'X-Agent': 'Juejin/Web'
+      }
+    })
       .then(response => {
-        commit('setTagNavList',response)
+        commit('setTagNavList',response.data.data.tagNav.items)
       })
   },
   getAdsInfo ({ commit }) {
@@ -58,6 +68,19 @@ const actions = {
     })
       .then(response => {
         commit('setAdsInfo',response.data.data.advertisementCard.items)
+      })
+  },
+  getCategoryList ({ commit }) {
+    http.get('/getCategoryList/v1/categories',{
+      headers: {
+        'X-Juejin-Client': '1560472673582',
+        'X-Juejin-Src': 'web',
+        'X-Juejin-Token': 'eyJhY2Nlc3NfdG9rZW4iOiI2RURyR0lYbjEzNGk5NEc2IiwicmVmcmVzaF90b2tlbiI6Im9LTzNHaDhMd250bm50MkoiLCJ0b2tlbl90eXBlIjoibWFjIiwiZXhwaXJlX2luIjoyNTkyMDAwfQ==',
+        'X-Juejin-Uid': '5cfdf074f265da1bcb4f2094'
+      }
+    })
+      .then(response => {
+        commit('setCategoryList',response.categoryList)
       })
   }
 }

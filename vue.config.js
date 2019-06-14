@@ -14,6 +14,13 @@ module.exports = {
         pathRewrite: {
           '^/getArticleList': ''
         }
+      },
+
+      '/getCategoryList': {
+        target: 'http://gold-tag-ms.juejin.im',
+        pathRewrite: {
+          '^/getCategoryList': ''
+        }
       }
     }
   }

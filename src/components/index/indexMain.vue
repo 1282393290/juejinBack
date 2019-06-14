@@ -1,6 +1,6 @@
 <template>
   <main class="main-view">
-    <TagsNav v-show="name=='recommended'?false:true"/>
+    <TagsNav :tagList="tagNavList" v-show="name=='recommended'?false:true"/>
     <router-view />
     <div class="advertisement item" v-for="ad in adsInfo" :key="ad.id">
       <div class="info-box">
@@ -53,7 +53,7 @@ import { mapState } from 'vuex'
 
 export default {
   computed: {
-    ...mapState('index',['adsInfo','articleList'])
+    ...mapState('index',['adsInfo','articleList','tagNavList'])
   },
   components: {
     TagsNav

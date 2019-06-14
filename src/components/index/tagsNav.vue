@@ -1,8 +1,14 @@
 <template>
   <div class="tags-nav">
     <ul class="tag-list">
-      <li class="tag" v-for="(tag,index) in tagList" :key="index">
-        <router-link to="/" active-class="active">{{tag.title}}</router-link>
+      <li v-for="tag in tagShowList" :key="tag.tagId">
+        <router-link to="/" class="tag">{{tag.title}}</router-link>
+      </li>
+      <li v-show="tagHideList.length && unfold" class="unfold">
+        <button class="tag" @click="unfold=!unfold"><span>展开</span><i class="iconfont icon-triangle-down"></i></button>
+      </li>
+      <li v-for="tag in tagHideList" :key="tag.tagId" v-show="!unfold">
+        <button class="tag">{{tag.title}}</button>
       </li>
     </ul>
   </div>
@@ -12,16 +18,16 @@
 export default {
   data () {
     return {
-      tagList: [
-        {title:'全部',iconclass:''},
-        {title:'全部',iconclass:''},
-        {title:'全部',iconclass:''},
-        {title:'全部',iconclass:''},
-        {title:'全部',iconclass:''},
-        {title:'全部',iconclass:''},
-        {title:'全部',iconclass:''},
-        {title:'展开',iconclass:'iconfont icon-triangle-down'}
-      ]
+      unfold: true
+    }
+  },
+  props: ['tagList'],
+  computed: {
+    tagHideList () {
+      return this.tagList.filter((val,key)=>key>8)
+    },
+    tagShowList () {
+      return this.tagList.filter((val,key)=>key<9)
     }
   }
 }
@@ -35,6 +41,10 @@ export default {
     display: flex;
     flex-wrap: wrap;
     height: auto;
+    .iconfont {
+      font-size: 1.1rem;
+      transform: scale(1.5);
+    }
     .tag {
       display: flex;
       justify-content: center;
@@ -46,6 +56,7 @@ export default {
       margin-right: .83rem;
       margin-bottom: .75rem;
       background: #fff;
+      color: #909090;
       .active {
         background-color: #007fff;
         color: #fff;

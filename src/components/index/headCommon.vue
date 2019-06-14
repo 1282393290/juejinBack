@@ -15,7 +15,7 @@
             </div>
             <div class="hide-down" v-show="isOk">
               <ul>
-                <router-link v-for="(item, index) in pageList" :key="index" :to="`item.url`" tag="li" class="link-item" @click="pageNum=item.pageNum">{{item.pageNum}}</router-link>
+                <router-link v-for="(item, index) in pageList" :key="index" :to="item.url" tag="li" class="link-item" @click="pageNum=item.pageNum">{{item.pageNum}}</router-link>
               </ul>
             </div>
           </li>

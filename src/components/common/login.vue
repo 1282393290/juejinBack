@@ -8,7 +8,7 @@
           <input type="text" placeholder="请输入手机号或用户名">
           <input type="password" placeholder="请输入密码">
         </div>
-        <button class="login-btn">登录</button>
+        <router-link to="/login" class="login-btn" @click="closeFn" tag="button">登录</router-link>
         <div class="prompt-box">
           没有账号？ 
           <span data-v-36a84bce="" class="clickable" @click="setlogin">注册</span>
