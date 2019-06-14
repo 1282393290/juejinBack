@@ -17,7 +17,7 @@ export default new Vuex.Store({
   state: {
     hasloginCount: false,
     loginState: false,
-    close: false
+    close: true
   },
 
   mutations: {
@@ -27,12 +27,9 @@ export default new Vuex.Store({
     setClose (state,payload) {
       state.close = false
     },
-    setLoginState (state,payload) {
-      state.loginState = payload
-    },
     showLogReg (state,payload) {
-      state.loginState = payload[0]
-      state.hasloginCount = payload[1]
+      state.hasloginCount = payload[0]
+      state.loginState = payload[1]
       state.close = payload[2]
     }
   }

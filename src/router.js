@@ -1,5 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+// import Index from './views/Index/index.vue'
+// import Books from './views/Books/index.vue'
+// import Events from './views/Events/index.vue'
 
 Vue.use(Router)
 
@@ -7,67 +10,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      component: () => import('./views/Index/index.vue'),
-      children: [
-        {
-          path: 'recommended/:name',
-          name: 'recommended',
-          component: () => import('./views/Index/recommended.vue'),
-          props: true
-        },
-        {
-          path: 'backend/:name',
-          name: 'backend',
-          component: () => import('./views/Index/backend.vue'),
-          props: true
-        },
-        {
-          path: 'frontend/:name',
-          name: 'frontend',
-          component: () => import('./views/Index/frontend.vue'),
-          props: true
-        },
-        {
-          path: 'android/:name',
-          name: 'android',
-          component: () => import('./views/Index/android.vue'),
-          props: true
-        },
-        {
-          path: 'ai/:name',
-          name: 'ai',
-          component: () => import('./views/Index/ai.vue'),
-          props: true
-        },
-        {
-          path: 'ios/:name',
-          name: 'ios',
-          component: () => import('./views/Index/ios.vue'),
-          props: true
-        },
-        {
-          path: 'freebie/:name',
-          name: 'freebie',
-          component: () => import('./views/Index/freebie.vue'),
-          props: true
-        },
-        {
-          path: 'career/:name',
-          name: 'career',
-          component: () => import('./views/Index/career.vue'),
-          props: true
-        },
-        {
-          path: 'article/:name',
-          name: 'article',
-          component: () => import('./views/Index/article.vue'),
-          props: true
-        },
-        {
-          path: '/',
-          redirect: '/recommended/recommended'
-        }
-      ]
+      name: 'index',
+      component: () => import('./views/Index/index.vue')
     },
     {
       path: '/books',
@@ -99,10 +43,6 @@ export default new Router({
       path: '/events',
       name: 'events',
       component: () => import('./views/Events/index.vue')
-    },
-    {
-      path: '*',
-      redirect: '/'
     }
   ]
 })
