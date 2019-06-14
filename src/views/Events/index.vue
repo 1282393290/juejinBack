@@ -1,35 +1,34 @@
 <template>
   <div class="page-events">
       <div class="main">
-        <div class="swiper">
-          <van-swipe
+         <van-swipe :autoplay="3000" indicator-color="white">
+              <van-swipe-item>1</van-swipe-item>
+              <van-swipe-item>2</van-swipe-item>
+              <van-swipe-item>3</van-swipe-item>
+              <van-swipe-item>4</van-swipe-item>
+          </van-swipe>
+        <!-- <div class="swiper"> -->
+          <!-- <van-swipe
             :autoplay="3000" indicator-color="white">
-              <!-- <van-swipe-item
+
+              <van-swipe-item
                 v-for="maring in maringList"
                 :key="maring._id"
               >
               <img :src="maring.screenshot" alt="">
-              </van-swipe-item> -->
+              </van-swipe-item>
 
-            <van-swipe-item>
-              <img src="
-              https:\/\/user-gold-cdn.xitu.io\/1560135413951bd905f5a9872e4112ea3044148252ef1.jpg
-              " alt="">
-            </van-swipe-item>
-            <van-swipe-item >
-                <img src="
-              https:\/\/user-gold-cdn.xitu.io\/1560135413951bd905f5a9872e4112ea3044148252ef1.jpg
-              " alt="">
-            </van-swipe-item>
-            <van-swipe-item >4</van-swipe-item>
-          </van-swipe>
-        </div>
+
+            <van-swipe-item >4</van-swipe-item> -->
+          <!-- </van-swipe> -->
+
+        <!-- </div> -->
         <div class="activity">
           <ul>
             <li>
-              <div class="activity-img">
+              <!-- <div class="activity-img">
                 <img src="https:\/\/user-gold-cdn.xitu.io\/1560135413951bd905f5a9872e4112ea3044148252ef1.jpg" alt="">
-              </div>
+              </div> -->
               <div class="activity-bottom">
                 <div class="activity-header">
                   NSC  2019  中国网络安全大会
@@ -62,27 +61,29 @@
   </div>
 </template>
 <script>
-//import {mapActions, mapState} from "vuex";
-// export default {
-//   computed:{
-//     ...mapState('events',[
-//       'maringList'
-//     ])
-//   },
+import {mapActions, mapState} from 'vuex';
+export default {
+  computed:{
+    ...mapState('events',[
+      'maringList'
 
-//   methods:{
-//     ...mapActions('events',[
-//     'getmaringList'
-//     ])
-//   },
-//   created(){
-//     this.getmaringList();
-//   }
+    ])
 
-// }
+  },
+
+  methods: {
+    ...mapActions('events',[
+      'getmaringList'
+    ])
+  },
+  created(){
+    this.getmaringList();
+  }
+}
 </script>
 
-<style lang="less">
+
+<style lang="less" scoped>
 .main{
   height:100%;
   .swiper{

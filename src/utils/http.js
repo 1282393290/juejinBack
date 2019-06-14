@@ -3,16 +3,15 @@ import { Toast } from 'vant'
 
 const http = Axios.create()
 
-//http.defaults.baseURL = process.env.NODE_ENV === 'production' ? 'https://m.maizuo.com/' : 'https://m.maizuo.com/'
-http.defaults.baseURL = process.env.NODE_ENV === 'production' ? 'https://event-storage-api-ms.juejin.im/' : 'https://event-storage-api-ms.juejin.im/'
+http.defaults.baseURL = process.env.NODE_ENV === 'production' ? 'http:localhost:8080/' : 'http://localhost:8080/'
 http.timeout =10000
 
 http.interceptors.response.use(response => {
   let res = response.data
-  if(res.status === 0) {
-    return res
+  if(res.s === 1) {
+    return res.d
   } else {
-    Toast(res.msg)
+    Toast(res.m)
   }
 }, error => {
   Toast(error.message)
