@@ -6,7 +6,7 @@
     </router-link>
      <router-link  tag='li' to='/books/pay'>
       <i class="iconfont icon-yigou"></i>
-      <span>已购</span>
+      <span @click='showLogReg(true,true,true)'>已购</span>
     </router-link>
      <router-link  tag='li' to='/books/Me'>
       <i class="iconfont icon-5"></i>
@@ -14,6 +14,21 @@
     </router-link>
   </ul>
 </template>
+<script>
+import { mapState,mapMutations } from 'vuex'
+export default {
+   methods:{
+    ...mapMutations(['showLogReg']),
+    showLogReg (){
+      this.showLogReg(arguments)
+    }
+  },
+  computed:{
+    ...mapState(['loginState','hasloginCount'])
+  }
+}
+</script>
+
 <style lang='less' scoped>
   .tabbar{
     display: flex;
@@ -22,6 +37,7 @@
     width: 100%;
     position: fixed;
     bottom: 0;
+     background-color: #fff;
     li{
     flex: 1;
     display: flex;

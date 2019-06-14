@@ -1,44 +1,81 @@
 <template>
 <div>
 
-    <ul class="nav-list-left">
-      <router-link tag="li" to="/">全部</router-link>
-      <router-link tag="li" to="/">前端</router-link>
-      <router-link tag="li" to="/">后端</router-link>
-      <router-link tag="li" to="/">移动</router-link>
-      <router-link tag="li" to="/">开发</router-link>
-      <router-link tag="li" to="/">通用</router-link>
-    </ul> 
-    <BookText></BookText>
+   <nav class="navigation">
+    <ul class="nav-list">
+        <li v-for="(item,index) in navlist" :key="index">
+          <router-link to="/">{{item.name}}</router-link>
+        </li>
+    </ul>
+  </nav>
+    <BookText :list='booklist'></BookText>
     <Tabbar></Tabbar>
   </div>
 </template>
 <script>
+import { mapActions, mapState } from 'vuex'
 import BookText from '@/components/books/BookText.vue'
 import Tabbar from '@/components/books/Tabbar.vue'
 export default {
+  data () {
+    return {
+     
+    }
+  },     
  components: {
    BookText,
    Tabbar
+  },
+  computed:{
+    ...mapState('books', [
+      'navlist','booklist'
+    ]),
+  },
+  methods:{
+    ...mapActions('books',['getnavList','getbookList'])
+  },
+  created(){
+   this.getnavList()
+   this.getbookList()
   }
 }
 </script>
-<style lang="less">
-
-      .nav-list-left{
-        display: flex;
-        width: 100%;
-        height: 3.833rem;
-        align-items: center;
-        li{
-          position: relative;
-          padding: 0 0.95rem;
-          line-height: 1;
-          text-align: center;
-        }
+<style lang="less" >
+      .router-link-active {
+       
+          top:0;
+          left: 0;
+         color: inherit;
+      }
+      .navigation{
+        position:fixed;
+        top:0;
+        z-index: 1;
+        background: #fff;
+           .nav-list {
+              width: auto;
+              overflow-x: auto;
+              max-width: 960px;
+              height: 100%;
+              margin: auto;
+              display: flex;
+              align-items: center;
+              line-height: 1;
+              height: 3.833rem;
+              li {
+                padding-left: 2rem;
+                height: 100%;
+                align-items: center;
+                display: flex;
+                flex-shrink: 0;
+                font-size: 1.16rem;
+                color: #71777c;
+              }
+           }
       }
     .book-lists{
       width:100%;
+      margin:50px 0;
       .book-item{
         display: flex;
         padding: 15px;
